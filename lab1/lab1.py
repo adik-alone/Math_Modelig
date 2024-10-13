@@ -2,6 +2,7 @@ from data_file import data, count_set
 
 import numpy as np
 import scipy.stats as stats
+import matplotlib.pyplot as plt
 
 def dov_int(data, alpha, mean, std_dev):
     n = len(data)
@@ -41,9 +42,28 @@ def task1(data, count):
     relative_deviation = (abs(mean - true_value) / true_value) * 100
     print(f"Относительное отклонение: {relative_deviation}%")
 
+def task2(data):
+    # Создание графика
+    plt.plot(data, marker='o')  # 'marker' добавляет маркеры на график
+
+    # Настройка графика
+    plt.title("График значений последовательности data")
+    plt.xlabel("Индекс")
+    plt.ylabel("Значение")
+    # plt.xlim(-100, 400)
+    # plt.ylim(0, 700)
+    plt.grid(True)
+
+    plt.savefig("func_seq.pdf")
+    # plt.show()
+
+
+
 
 if __name__ == "__main__":
     for i in count_set:
         print(f"Значения для выборки размером {i} значений")
         task1(data, i)
         print()
+
+    task2(data)
