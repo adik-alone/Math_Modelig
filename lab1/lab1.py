@@ -3,6 +3,8 @@ from data_file import data, count_set
 import numpy as np
 import scipy.stats as stats
 import matplotlib.pyplot as plt
+import pandas as pd
+from statsmodels.graphics.tsaplots import plot_acf
 
 def dov_int(data, alpha, mean, std_dev):
     n = len(data)
@@ -44,6 +46,7 @@ def task1(data, count):
 
 def task2(data):
     # Создание графика
+    # data.sort()
     plt.plot(data, marker='o')  # 'marker' добавляет маркеры на график
 
     # Настройка графика
@@ -54,10 +57,28 @@ def task2(data):
     # plt.ylim(0, 700)
     plt.grid(True)
 
-    plt.savefig("func_seq.pdf")
-    # plt.show()
+    # plt.savefig("func_seq.pdf")
+    plt.show()
 
 
+def task3(data):
+    # Визуализация временного ряда
+    plt.figure(figsize=(10, 4))
+    plt.plot(data)
+    plt.title('Случайный временной ряд')
+    plt.xlabel('Время')
+    plt.ylabel('Значение')
+    plt.grid()
+    plt.show()
+
+    # Автокорреляционный анализ
+    plt.figure(figsize=(10, 4))
+    plot_acf(data, lags=300)
+    plt.title('Автокорреляционная функция')
+    plt.xlabel('Задержка')
+    plt.ylabel('Автокорреляция')
+    plt.grid()
+    plt.show()
 
 
 if __name__ == "__main__":
@@ -67,3 +88,4 @@ if __name__ == "__main__":
         print()
 
     task2(data)
+    task3(data)
