@@ -80,6 +80,15 @@ def task3(data):
     plt.grid()
     plt.show()
 
+def task4(data):
+    n = 10 # range
+    plt.hist(data, bins=10, edgecolor='black')
+    plt.title('Гистограмма распределения частот')
+    plt.xlabel('Значения')
+    plt.ylabel('Частота')
+    plt.grid(axis='y', alpha=0.75)
+    plt.show()
+
 
 if __name__ == "__main__":
     for i in count_set:
@@ -89,3 +98,4 @@ if __name__ == "__main__":
 
     task2(data)
     task3(data)
+    task4(data)
