@@ -1,5 +1,5 @@
 import math
-
+import random
 from data_file import data, count_set
 
 import numpy as np
@@ -7,6 +7,7 @@ import scipy.stats as stats
 import matplotlib.pyplot as plt
 import pandas as pd
 from statsmodels.graphics.tsaplots import plot_acf
+
 
 def dov_int(data, alpha, mean, std_dev):
     n = len(data)
@@ -16,7 +17,8 @@ def dov_int(data, alpha, mean, std_dev):
     margin_of_error = z_value * (std_dev / np.sqrt(n))
     ci_lower = round(mean - margin_of_error, 4)
     ci_upper = round(mean + margin_of_error, 4)
-    print(f" {1-alpha}% доверительный интервал: ({ci_lower}, {ci_upper})")
+    print(f" {1 - alpha}% доверительный интервал: ({ci_lower}, {ci_upper})")
+
 
 def task1(data, count):
     data = data[:count]
@@ -25,7 +27,7 @@ def task1(data, count):
     print(f"Математическое ожидание: {mean}")
 
     # 2. Дисперсия
-    variance = round(np.var(data, ddof=0), 4) # Используем ddof=0 для выборочной дисперсии
+    variance = round(np.var(data, ddof=0), 4)  # Используем ddof=0 для выборочной дисперсии
     print(f"Дисперсия: {variance}")
 
     # 3. Среднеквадратическое отклонение
@@ -42,9 +44,10 @@ def task1(data, count):
     dov_int(data, alpha=0.01, mean=mean, std_dev=std_dev)
 
     # 6. Относительные отклонения
-    true_value = 206.4258 # Замените на истинное значение, если оно известно
+    true_value = 206.4258  # Замените на истинное значение, если оно известно
     relative_deviation = (abs(mean - true_value) / true_value) * 100
     print(f"Относительное отклонение: {relative_deviation}%")
+
 
 def task2(data):
     # Создание графика
@@ -82,14 +85,16 @@ def task3(data):
     plt.grid()
     plt.show()
 
+
 def task4(data):
-    n = 10 # range
+    n = 10  # range
     plt.hist(data, bins=10, edgecolor='black')
     plt.title('Гистограмма распределения частот')
     plt.xlabel('Значения')
     plt.ylabel('Частота')
     plt.grid(axis='y', alpha=0.75)
     plt.show()
+
 
 def task5(data):
     mu = np.mean(data)
@@ -128,4 +133,4 @@ if __name__ == "__main__":
     # task2(data)
     # task3(data)
     # task4(data)
-    task5(data)
+    # task5(data)
