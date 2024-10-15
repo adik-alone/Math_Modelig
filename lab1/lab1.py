@@ -1,3 +1,5 @@
+import math
+
 from data_file import data, count_set
 
 import numpy as np
@@ -89,6 +91,33 @@ def task4(data):
     plt.grid(axis='y', alpha=0.75)
     plt.show()
 
+def task5(data):
+    mu = np.mean(data)
+    sigma = np.std(data)
+
+    # Построение гистограммы
+    plt.hist(data, bins=10, density=True, alpha=0.6, color='g')
+
+    # Определение параметров распределения Эрланга
+    theta = sigma ** 2 / mu
+    k = mu ** 2 / sigma ** 2
+    k = int(round(k))  # Приведение k к целому числу
+    print(f"Порядок распределения Эрланга k = {k}")
+
+    # Построение гистограммы
+    plt.hist(data, bins=30, density=True, alpha=0.6, color='g')
+
+    # Построение плотности распределения Эрланга
+    x = np.linspace(0, np.max(data), 100)
+    pdf = (x ** (k - 1) * np.exp(-x / theta)) / (theta ** k * math.factorial(k - 1))
+    plt.plot(x, pdf, 'k', linewidth=2)
+
+    plt.title('Аппроксимация распределением Эрланга')
+    plt.xlabel('Значения')
+    plt.ylabel('Плотность вероятности')
+    plt.grid()
+    plt.show()
+
 
 if __name__ == "__main__":
     for i in count_set:
@@ -96,6 +125,7 @@ if __name__ == "__main__":
         task1(data, i)
         print()
 
-    task2(data)
-    task3(data)
-    task4(data)
+    # task2(data)
+    # task3(data)
+    # task4(data)
+    task5(data)
