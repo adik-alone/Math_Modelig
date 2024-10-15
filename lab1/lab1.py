@@ -7,6 +7,7 @@ import scipy.stats as stats
 import matplotlib.pyplot as plt
 import pandas as pd
 from statsmodels.graphics.tsaplots import plot_acf
+import seaborn as sns
 
 def dov_int(data, alpha, mean, std_dev):
     n = len(data)
@@ -117,6 +118,49 @@ def task5(data):
     plt.ylabel('Плотность вероятности')
     plt.grid()
     plt.show()
+
+def task10(data1, data2):
+    # Создание DataFrame для удобства
+    df = pd.DataFrame({'Data1': data1, 'Data2': data2})
+
+    # Вычисление коэффициента корреляции
+    correlation = df['Data1'].corr(df['Data2'])
+    print(f'Коэффициент корреляции Пирсона: {correlation:.2f}')
+
+    plt.scatter(data1, data2)
+    plt.title('Диаграмма рассеяния')
+    plt.xlabel('Data1')
+    plt.ylabel('Data2')
+    plt.grid()
+    plt.show()
+
+
+def task9(data1, data2):
+    # 1. Построение графика значений
+    plt.figure(figsize=(12, 5))
+
+    plt.subplot(1, 2, 1)
+    plt.plot(data1, label='X', alpha=0.5)
+    plt.plot(data2, label='Y', alpha=0.5)
+    plt.title('График значений')
+    plt.xlabel('Индекс')
+    plt.ylabel('Значение')
+    plt.legend()
+    plt.grid()
+
+    # 2. Построение гистограмм
+    plt.subplot(1, 2, 2)
+    sns.histplot(data1, bins=30, color='blue', label='X', kde=True, stat='density', alpha=0.5)
+    sns.histplot(data2, bins=30, color='orange', label='Y', kde=True, stat='density', alpha=0.5)
+    plt.title('Гистограммы распределения частот')
+    plt.xlabel('Значение')
+    plt.ylabel('Плотность вероятности')
+    plt.legend()
+    plt.grid()
+
+    plt.tight_layout()
+    plt.show()
+
 
 
 if __name__ == "__main__":
