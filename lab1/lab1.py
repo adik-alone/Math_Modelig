@@ -1,6 +1,6 @@
 import math
 import random
-from data_file import data, count_set
+from data_file import data, count_set, random_data
 
 import numpy as np
 import scipy.stats as stats
@@ -171,10 +171,17 @@ def task9(data1, data2):
 if __name__ == "__main__":
     for i in count_set:
         print(f"Значения для выборки размером {i} значений")
-        task1(data, i)
+        # task1(data, i)
         print()
 
+
+    # print(len(data))
+    # print(len(random_data))
     # task2(data)
     # task3(data)
     # task4(data)
-    # task5(data)
+    task5(random_data)
+    task5(data)
+    task9(data, random_data)
+    task10(data, random_data)
+
